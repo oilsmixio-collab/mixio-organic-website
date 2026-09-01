@@ -960,7 +960,7 @@ section{position:relative;}
 .rating-row span{font-size:.86rem;color:var(--ink-soft);}
 .price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:26px;}
 .price-row .price-current{font-family:var(--font-display);font-size:2.1rem;color:var(--forest-900);font-weight:600;}
-.price-row .price-old{font-size:1.05rem;color:var(--ink-soft);text-decoration:line-through;opacity:.6;}
+.price-row .price-old{font-size:1.05rem;color:#7b2334;text-decoration:line-through;opacity:.85;}
 
 /* --- Cart page --- */
 .cart-page-grid{
