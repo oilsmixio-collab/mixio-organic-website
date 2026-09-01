@@ -387,7 +387,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (cartEmptyEl) cartEmptyEl.hidden = cart.length > 0;
     if (cartContentEl) cartContentEl.hidden = cart.length === 0;
-    if (cart.length === 0) return;
+    if (cart.length === 0) {
+      cartItemsEl.innerHTML = '';
+      return;
+    }
 
     cartItemsEl.innerHTML = cart.map(item => {
       const line = getLinePricing(item);
@@ -462,7 +465,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (checkoutEmptyEl) checkoutEmptyEl.hidden = cart.length > 0;
     if (checkoutContentEl) checkoutContentEl.hidden = cart.length === 0;
-    if (cart.length === 0) return;
+    if (cart.length === 0) {
+      checkoutSummaryEl.innerHTML = '';
+      return;
+    }
 
     checkoutSummaryEl.innerHTML = cart.map(item => {
       const line = getLinePricing(item);
