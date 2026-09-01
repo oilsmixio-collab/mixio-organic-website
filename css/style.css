@@ -509,6 +509,8 @@ section{position:relative;}
 }
 .ingredient-list svg{width:20px;height:20px;color:var(--sage-400);flex-shrink:0;margin-top:2px;}
 .ingredient-list strong{color:var(--forest-900);}
+.inci-list{margin-top:18px;padding-top:16px;border-top:1px solid var(--sage-100,#e4e9e1);font-size:.82rem;color:var(--ink-soft);}
+.inci-list strong{color:var(--forest-900);}
 
 /* --- Compare banner + pro/cons table --- */
 .compare-banner{
@@ -1193,6 +1195,12 @@ section{position:relative;}
 .value-card svg{width:30px;height:30px;color:var(--terracotta-500);margin:0 auto 14px;}
 .value-card h3{font-size:1.02rem;}
 .value-card p{font-size:.9rem;margin:0;}
+
+.treatment-card{padding:0;overflow:hidden;text-align:left;}
+.treatment-card img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
+.treatment-card .treatment-body{padding:26px;}
+.treatment-card svg{margin:0 0 14px;}
+.treatment-card h3{margin-bottom:8px;}
 
 .contact-grid{
   display:grid;
