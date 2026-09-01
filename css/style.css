@@ -537,6 +537,29 @@ section{position:relative;}
 }
 .split.reverse .split-visual{order:2;}
 .split .img-placeholder{aspect-ratio:1/1;}
+.solution-price-callout{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:22px;
+  padding:16px 20px;
+  background:rgba(123,35,52,0.06);
+  border:1.5px solid rgba(123,35,52,0.25);
+  border-radius:var(--radius-md);
+}
+.solution-sale-badge{
+  background:#7b2334;
+  color:var(--white);
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  padding:6px 13px;
+  border-radius:999px;
+}
+.solution-save-note{font-size:.9rem;font-weight:600;color:#7b2334;}
+
 .ingredient-list{margin-top:22px;display:flex;flex-direction:column;gap:14px;}
 .ingredient-list li{
   display:flex;
