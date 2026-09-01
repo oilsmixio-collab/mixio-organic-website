@@ -46,6 +46,12 @@ PRODUCT_IMAGES = {
     "Hair Food + Grow|100 ml": "assets/img/hair-food-oil.jpg",
 }
 
+# Producten die (tijdelijk) niet besteld kunnen worden, ook al staat er nog
+# een oude versie in iemands winkelwagen (localStorage).
+SOLD_OUT = {
+    "Hair Food + Grow|100 ml",
+}
+
 # Staffelkorting per productregel (zelfde product+maat):
 # 1 stuk = normale prijs, 2 stuks = 25% korting, 3+ stuks = 35% korting.
 # Moet exact in de pas lopen met getDiscountRate() in js/script.js.
@@ -122,6 +128,8 @@ def create_checkout():
             qty = 0
         if price is None or qty < 1:
             return jsonify({"error": f"Onbekend product: {item.get('product')}"}), 400
+        if key in SOLD_OUT:
+            return jsonify({"error": f"{item.get('product')} is helaas uitverkocht."}), 400
 
         rate = get_discount_rate(qty)
         line_subtotal = price * qty

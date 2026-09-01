@@ -552,10 +552,12 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {
         if (submitBtn) submitBtn.disabled = false;
         if (msg) {
-          msg.textContent = t(
-            'Er ging iets mis bij het doorsturen naar Mollie. Probeer het opnieuw, of stuur je bestelling per e-mail naar ' + COMPANY_EMAIL + '.',
-            'Something went wrong redirecting to Mollie. Please try again, or email your order to ' + COMPANY_EMAIL + '.'
-          );
+          msg.textContent = /uitverkocht/i.test(err.message || '')
+            ? t(err.message, 'Sorry, this product just sold out. Please remove it from your cart.')
+            : t(
+              'Er ging iets mis bij het doorsturen naar Mollie. Probeer het opnieuw, of stuur je bestelling per e-mail naar ' + COMPANY_EMAIL + '.',
+              'Something went wrong redirecting to Mollie. Please try again, or email your order to ' + COMPANY_EMAIL + '.'
+            );
           msg.classList.remove('success');
           msg.classList.add('show', 'error');
         }

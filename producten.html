@@ -146,7 +146,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           100% Organisch
         </span>
-        <h1>Hair Food + Grow</h1>
+        <h1>Hair Food + Grow <span class="sold-out-badge" data-en="Sold out">Uitverkocht</span></h1>
         <p class="subtitle">Oil Treatment Hair &amp; Scalp · 100 ml</p>
 
         <div class="rating-row">
@@ -173,9 +173,9 @@
 
         <div class="option-group">
           <label data-en="Choose your bundle">Kies je voordeelpakket</label>
-          <div class="bundle-grid">
+          <div class="bundle-grid" style="opacity:.55;pointer-events:none;">
             <label class="bundle-option" data-qty="1">
-              <input type="radio" name="bundleQty" value="1">
+              <input type="radio" name="bundleQty" value="1" disabled>
               <span class="bundle-main">
                 <span class="bundle-title" data-en="1 bottle">1 fles</span>
                 <span class="bundle-sub" data-en="You save 36%">Je bespaart 36%</span>
@@ -186,9 +186,9 @@
               </span>
             </label>
 
-            <label class="bundle-option is-selected" data-qty="2">
+            <label class="bundle-option" data-qty="2">
               <span class="bundle-badge" data-en="Most chosen">Meest gekozen</span>
-              <input type="radio" name="bundleQty" value="2" checked>
+              <input type="radio" name="bundleQty" value="2" disabled>
               <span class="bundle-main">
                 <span class="bundle-title" data-en="2 bottles">2 flessen</span>
                 <span class="bundle-sub" data-en="You save 25%">Je bespaart 25%</span>
@@ -201,7 +201,7 @@
 
             <label class="bundle-option" data-qty="3">
               <span class="bundle-badge bundle-badge-alt" data-en="Best value">Beste deal</span>
-              <input type="radio" name="bundleQty" value="3">
+              <input type="radio" name="bundleQty" value="3" disabled>
               <span class="bundle-main">
                 <span class="bundle-title" data-en="3 bottles">3 flessen</span>
                 <span class="bundle-sub" data-en="You save 35%">Je bespaart 35%</span>
@@ -216,8 +216,8 @@
         </div>
 
         <div class="order-actions">
-          <button class="btn btn-primary btn-block" data-add-to-cart data-product="Hair Food + Grow" data-size="100 ml" data-en="Add to cart">Toevoegen aan winkelwagen</button>
-          <a href="mailto:oilsmixio@gmail.com?subject=Vraag%20over%20Hair%20Food%20%2B%20Grow" class="btn btn-outline btn-block" data-en="Ask a question">Stel een vraag</a>
+          <span class="btn btn-primary btn-block is-disabled" data-en="Sold out">Uitverkocht</span>
+          <a href="mailto:oilsmixio@gmail.com?subject=Laat%20me%20weten%20wanneer%20Hair%20Food%20%2B%20Grow%20weer%20op%20voorraad%20is" class="btn btn-outline btn-block" data-en="Notify me when back in stock">Laat me weten wanneer het weer op voorraad is</a>
         </div>
 
         <div class="order-note">

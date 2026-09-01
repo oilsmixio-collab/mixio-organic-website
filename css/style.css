@@ -1343,7 +1343,20 @@ section{position:relative;}
   padding:3px 9px;
   border-radius:999px;
 }
-.treatment-card .btn.is-disabled{
+.sold-out-badge{
+  display:inline-block;
+  vertical-align:middle;
+  background:#7b2334;
+  color:var(--white);
+  font-size:.62rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  padding:5px 12px;
+  border-radius:999px;
+  margin-left:4px;
+}
+.btn.is-disabled{
   opacity:.55;
   pointer-events:none;
   cursor:default;
