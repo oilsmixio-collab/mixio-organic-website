@@ -41,6 +41,11 @@ PRICES = {
     "Hair Food + Grow|100 ml": 34.99,
 }
 
+# Productfoto per product+maat, gebruikt in de bevestigingsmail.
+PRODUCT_IMAGES = {
+    "Hair Food + Grow|100 ml": "assets/img/hair-food-oil.jpg",
+}
+
 # Staffelkorting per productregel (zelfde product+maat):
 # 1 stuk = normale prijs, 2 stuks = 25% korting, 3+ stuks = 35% korting.
 # Moet exact in de pas lopen met getDiscountRate() in js/script.js.
@@ -199,10 +204,24 @@ def send_order_confirmation_email(to_email, customer_name, order_items, order_to
         return False
 
     first_name = (customer_name or "there").split(" ")[0] or "there"
+    base_url = (PUBLIC_BASE_URL or "https://www.mixioorganic.nl").rstrip("/")
+
+    def product_image_url(item):
+        key = f"{item.get('product')}|{item.get('size')}"
+        path = PRODUCT_IMAGES.get(key)
+        return f"{base_url}/{path}" if path else None
 
     rows_html = "".join(
-        f"<tr><td style='padding:6px 0;'>{item['qty']}x {item['product']} ({item['size']})</td>"
-        f"<td style='padding:6px 0;text-align:right;'>€ {item['lineTotal']:.2f}</td></tr>"
+        f"<tr>"
+        f"<td style='padding:8px 0;width:64px;'>"
+        + (
+            f"<img src='{img}' alt='{item['product']}' width='56' height='56' "
+            f"style='width:56px;height:56px;object-fit:cover;border-radius:8px;display:block;'>"
+            if (img := product_image_url(item)) else ""
+        )
+        + f"</td>"
+        f"<td style='padding:8px 0;'>{item['qty']}x {item['product']} ({item['size']})</td>"
+        f"<td style='padding:8px 0;text-align:right;'>€ {item['lineTotal']:.2f}</td></tr>"
         for item in order_items
     )
     rows_text = "\n".join(
@@ -218,7 +237,7 @@ def send_order_confirmation_email(to_email, customer_name, order_items, order_to
       <table style="width:100%;border-collapse:collapse;margin:16px 0;">
         {rows_html}
         <tr style="border-top:1px solid #ddd;font-weight:bold;">
-          <td style="padding:10px 0 0;">Total</td>
+          <td colspan="2" style="padding:10px 0 0;">Total</td>
           <td style="padding:10px 0 0;text-align:right;">€ {order_total:.2f}</td>
         </tr>
       </table>
