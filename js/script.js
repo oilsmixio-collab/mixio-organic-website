@@ -549,8 +549,59 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------- Footer year ---------- */
-  document.querySelectorAll('[data-year]').forEach(el => {
-    el.textContent = new Date().getFullYear();
-  });
+  function fillFooterYear() {
+    document.querySelectorAll('[data-year]').forEach(el => {
+      el.textContent = new Date().getFullYear();
+    });
+  }
+  fillFooterYear();
+
+  /* ---------- Taalwissel (NL/EN) ---------- */
+  const LANG_KEY = 'mixioLang';
+
+  function applyLanguage(lang) {
+    const html = document.documentElement;
+    html.lang = lang;
+
+    if (html.dataset.titleEn) {
+      if (html.dataset.titleNl === undefined) html.dataset.titleNl = document.title;
+      document.title = lang === 'en' ? html.dataset.titleEn : html.dataset.titleNl;
+    }
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && html.dataset.descEn) {
+      if (html.dataset.descNl === undefined) html.dataset.descNl = metaDesc.content;
+      metaDesc.content = lang === 'en' ? html.dataset.descEn : html.dataset.descNl;
+    }
+
+    document.querySelectorAll('[data-en]').forEach(el => {
+      if (el.dataset.nl === undefined) el.dataset.nl = el.innerHTML;
+      el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.nl;
+    });
+
+    document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+      if (el.dataset.placeholderNl === undefined) el.dataset.placeholderNl = el.placeholder;
+      el.placeholder = lang === 'en' ? el.dataset.enPlaceholder : el.dataset.placeholderNl;
+    });
+
+    document.querySelectorAll('.lang-switch button').forEach(btn => {
+      btn.classList.toggle('is-active', btn.dataset.lang === lang);
+    });
+
+    fillFooterYear();
+  }
+
+  function initLanguage() {
+    const saved = localStorage.getItem(LANG_KEY) || 'nl';
+    applyLanguage(saved);
+    document.querySelectorAll('.lang-switch button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        localStorage.setItem(LANG_KEY, lang);
+        applyLanguage(lang);
+      });
+    });
+  }
+  initLanguage();
 
 });
