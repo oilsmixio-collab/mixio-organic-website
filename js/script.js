@@ -63,10 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
     saveCart(getCart().filter(i => i.id !== id));
   }
 
-  /* ---------- Prijsberekening: 10% korting vanaf 2 stuks van een product ---------- */
-  const DISCOUNT_RATE = 0.10;
-  const DISCOUNT_MIN_QTY = 2;
+  /* ---------- Prijsberekening: staffelkorting per productregel ---------- */
+  // 1 stuk = normale prijs, 2 stuks = 10% korting, 3+ stuks = 15% korting.
+  // Moet exact in de pas lopen met get_discount_rate() in app.py.
+  const DISCOUNT_TIERS = [[3, 0.15], [2, 0.10]];
   const VAT_RATE = 0.21;
+
+  function getDiscountRate(qty) {
+    for (const [minQty, rate] of DISCOUNT_TIERS) {
+      if (qty >= minQty) return rate;
+    }
+    return 0;
+  }
 
   // Prijzen zijn inclusief btw; dit haalt het btw-deel uit een totaalbedrag.
   function getVatAmount(total) {
@@ -75,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getLinePricing(item) {
     const subtotal = item.price * item.qty;
-    const discount = item.qty >= DISCOUNT_MIN_QTY ? subtotal * DISCOUNT_RATE : 0;
+    const discount = subtotal * getDiscountRate(item.qty);
     return { subtotal, discount, total: subtotal - discount };
   }
 
@@ -342,6 +350,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- Product page: bundle picker (drives the hidden qty input) ---------- */
+  const bundleOptions = document.querySelectorAll('.bundle-option');
+  if (bundleOptions.length && qtyInput) {
+    bundleOptions.forEach(option => {
+      const radio = option.querySelector('input[type="radio"]');
+      radio?.addEventListener('change', () => {
+        if (!radio.checked) return;
+        qtyInput.value = option.dataset.qty;
+        bundleOptions.forEach(o => o.classList.toggle('is-selected', o === option));
+      });
+    });
+  }
+
   const priceCurrentEl = document.querySelector('.price-row .price-current');
 
   /* ---------- Product page: tabs ---------- */
@@ -394,8 +415,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cartItemsEl.innerHTML = cart.map(item => {
       const line = getLinePricing(item);
+      const ratePct = Math.round(getDiscountRate(item.qty) * 100);
       const discountNote = line.discount > 0
-        ? `<div class="cart-item-discount">${t('10% korting toegepast', '10% discount applied')}</div>`
+        ? `<div class="cart-item-discount">${t(`${ratePct}% korting toegepast`, `${ratePct}% discount applied`)}</div>`
         : '';
       return `
       <div class="cart-item" data-id="${item.id}">

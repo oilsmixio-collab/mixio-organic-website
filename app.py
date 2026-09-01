@@ -29,9 +29,17 @@ PRICES = {
     "Hair Food + Grow|100 ml": 34.99,
 }
 
-# "Koop 2, ontvang 10% korting" — geldt per productregel (zelfde product+maat).
-DISCOUNT_RATE = 0.10
-DISCOUNT_MIN_QTY = 2
+# Staffelkorting per productregel (zelfde product+maat):
+# 1 stuk = normale prijs, 2 stuks = 10% korting, 3+ stuks = 15% korting.
+# Moet exact in de pas lopen met getDiscountRate() in js/script.js.
+DISCOUNT_TIERS = [(3, 0.15), (2, 0.10)]
+
+
+def get_discount_rate(qty):
+    for min_qty, rate in DISCOUNT_TIERS:
+        if qty >= min_qty:
+            return rate
+    return 0.0
 
 HTML_PAGES = {
     "index.html", "producten.html", "diensten.html", "contact.html",
@@ -97,13 +105,14 @@ def create_checkout():
         if price is None or qty < 1:
             return jsonify({"error": f"Onbekend product: {item.get('product')}"}), 400
 
+        rate = get_discount_rate(qty)
         line_subtotal = price * qty
-        line_total = line_subtotal * (1 - DISCOUNT_RATE) if qty >= DISCOUNT_MIN_QTY else line_subtotal
+        line_total = line_subtotal * (1 - rate)
         total += line_total
 
         line_desc = f"{qty}x {item.get('product')} ({item.get('size')})"
-        if qty >= DISCOUNT_MIN_QTY:
-            line_desc += f" [-{int(DISCOUNT_RATE * 100)}%]"
+        if rate > 0:
+            line_desc += f" [-{int(rate * 100)}%]"
         order_lines.append(line_desc)
 
     total = round(total, 2)
