@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const formatEuro = (n) => '€ ' + n.toFixed(2).replace('.', ',');
 
+  /* ---------- Taal (gebruikt door dynamisch gerenderde tekst) ---------- */
+  const LANG_KEY = 'mixioLang';
+  const getLang = () => localStorage.getItem(LANG_KEY) || 'nl';
+  const t = (nl, en) => (getLang() === 'en' ? en : nl);
+
   /* ---------- Cart core (client-side, localStorage) ---------- */
   const CART_KEY = 'mixioCart';
   const MAX_QTY = 10;
@@ -164,11 +169,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatWindow = document.getElementById('chatWindow');
     const chatClose = document.getElementById('chatClose');
     const chatBody = document.getElementById('chatBody');
-    const CHAT_MESSAGES = [
-      'Hallo, jij daar?',
-      'Welkom op de Mixio website!',
-      'Waar ben je naar op zoek?'
-    ];
+    const CHAT_MESSAGES = t(
+      ['Hallo, jij daar?', 'Welkom op de Mixio website!', 'Waar ben je naar op zoek?'],
+      ['Hi, is that you?', 'Welcome to the Mixio website!', 'What are you looking for?']
+    );
     let chatPlayed = false;
 
     const openChat = () => chatWindow.classList.add('open');
@@ -388,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cartItemsEl.innerHTML = cart.map(item => {
       const line = getLinePricing(item);
       const discountNote = line.discount > 0
-        ? '<div class="cart-item-discount">10% korting toegepast</div>'
+        ? `<div class="cart-item-discount">${t('10% korting toegepast', '10% discount applied')}</div>`
         : '';
       return `
       <div class="cart-item" data-id="${item.id}">
@@ -396,17 +400,17 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="cart-item-info">
           <h3>${item.product}</h3>
           <div class="cart-item-size">${item.size}</div>
-          <div class="cart-item-price">${formatEuro(item.price)} per stuk</div>
+          <div class="cart-item-price">${formatEuro(item.price)} ${t('per stuk', 'each')}</div>
         </div>
         <div class="cart-item-side">
           <div class="cart-item-subtotal">${formatEuro(line.total)}</div>
           ${discountNote}
           <div class="qty-stepper">
-            <button type="button" class="cart-qty-minus" aria-label="Minder">−</button>
-            <input type="text" class="cart-qty-input" value="${item.qty}" inputmode="numeric" aria-label="Aantal" readonly>
-            <button type="button" class="cart-qty-plus" aria-label="Meer">+</button>
+            <button type="button" class="cart-qty-minus" aria-label="${t('Minder', 'Decrease')}">−</button>
+            <input type="text" class="cart-qty-input" value="${item.qty}" inputmode="numeric" aria-label="${t('Aantal', 'Quantity')}" readonly>
+            <button type="button" class="cart-qty-plus" aria-label="${t('Meer', 'Increase')}">+</button>
           </div>
-          <button type="button" class="cart-item-remove">Verwijderen</button>
+          <button type="button" class="cart-item-remove">${t('Verwijderen', 'Remove')}</button>
         </div>
       </div>
     `;
@@ -500,7 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const submitBtn = checkoutForm.querySelector('button[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
       if (msg) {
-        msg.textContent = 'Je wordt doorgestuurd naar Mollie om te betalen...';
+        msg.textContent = t('Je wordt doorgestuurd naar Mollie om te betalen...', 'You are being redirected to Mollie to pay...');
         msg.classList.remove('success', 'error');
         msg.classList.add('show');
       }
@@ -520,7 +524,10 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {
         if (submitBtn) submitBtn.disabled = false;
         if (msg) {
-          msg.textContent = 'Er ging iets mis bij het doorsturen naar Mollie. Probeer het opnieuw, of stuur je bestelling per e-mail naar ' + COMPANY_EMAIL + '.';
+          msg.textContent = t(
+            'Er ging iets mis bij het doorsturen naar Mollie. Probeer het opnieuw, of stuur je bestelling per e-mail naar ' + COMPANY_EMAIL + '.',
+            'Something went wrong redirecting to Mollie. Please try again, or email your order to ' + COMPANY_EMAIL + '.'
+          );
           msg.classList.remove('success');
           msg.classList.add('show', 'error');
         }
@@ -542,7 +549,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const msg = document.getElementById('formMsg');
       if (msg) {
-        msg.textContent = 'Je e-mailprogramma wordt geopend om het bericht te versturen naar ' + COMPANY_EMAIL + '.';
+        msg.textContent = t(
+          'Je e-mailprogramma wordt geopend om het bericht te versturen naar ' + COMPANY_EMAIL + '.',
+          'Your email app will open to send the message to ' + COMPANY_EMAIL + '.'
+        );
         msg.classList.add('show', 'success');
       }
     });
@@ -557,8 +567,6 @@ document.addEventListener('DOMContentLoaded', () => {
   fillFooterYear();
 
   /* ---------- Taalwissel (NL/EN) ---------- */
-  const LANG_KEY = 'mixioLang';
-
   function applyLanguage(lang) {
     const html = document.documentElement;
     html.lang = lang;
@@ -589,6 +597,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     fillFooterYear();
+    renderCart();
+    renderCheckoutSummary();
   }
 
   function initLanguage() {
