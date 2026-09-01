@@ -30,9 +30,9 @@ PRICES = {
 }
 
 # Staffelkorting per productregel (zelfde product+maat):
-# 1 stuk = normale prijs, 2 stuks = 10% korting, 3+ stuks = 15% korting.
+# 1 stuk = normale prijs, 2 stuks = 25% korting, 3+ stuks = 35% korting.
 # Moet exact in de pas lopen met getDiscountRate() in js/script.js.
-DISCOUNT_TIERS = [(3, 0.15), (2, 0.10)]
+DISCOUNT_TIERS = [(3, 0.35), (2, 0.25)]
 
 
 def get_discount_rate(qty):

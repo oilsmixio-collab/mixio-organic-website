@@ -64,9 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------- Prijsberekening: staffelkorting per productregel ---------- */
-  // 1 stuk = normale prijs, 2 stuks = 10% korting, 3+ stuks = 15% korting.
+  // 1 stuk = normale prijs, 2 stuks = 25% korting, 3+ stuks = 35% korting.
   // Moet exact in de pas lopen met get_discount_rate() in app.py.
-  const DISCOUNT_TIERS = [[3, 0.15], [2, 0.10]];
+  const DISCOUNT_TIERS = [[3, 0.35], [2, 0.25]];
   const VAT_RATE = 0.21;
 
   function getDiscountRate(qty) {
