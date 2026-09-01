@@ -728,6 +728,13 @@ section{position:relative;}
   color:var(--cream-100);
   font-weight:600;
 }
+.price-tag .price-old{
+  font-family:var(--font-body);
+  font-size:1.2rem;
+  font-weight:500;
+  color:#ff8a8a;
+  text-decoration:line-through;
+}
 .price-tag small{
   font-family:var(--font-body);
   font-size:.85rem;
