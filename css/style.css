@@ -339,6 +339,7 @@ section{position:relative;}
   }
   .nav-toggle{display:flex;}
   .nav-cta .btn span.btn-text-long{display:none;}
+  .lang-switch button{padding:5px 8px;font-size:.68rem;}
 }
 
 /* --- Funnel progress rail (homepage) --- */
@@ -473,7 +474,7 @@ section{position:relative;}
 }
 .img-placeholder.is-photo.is-lifestyle img{
   object-fit:cover;
-  object-position:32% 18%;
+  object-position:45% 50%;
   padding:0;
 }
 .hero-visual .img-placeholder{aspect-ratio:4/5;}
