@@ -2,7 +2,7 @@
 title: Ingrediënt uitgelicht — zwartzaadolie
 date: 2026-08-28
 excerpt: Zwartzaadolie (Nigella Sativa) wordt al eeuwenlang gebruikt in traditionele verzorging. Wat maakt deze olie zo geliefd, en wat doet 'm precies voor je hoofdhuid?
-image: /assets/img/scalp-mask.jpg
+image: /assets/img/blog-blackseed.jpg
 ---
 
 Zwartzaadolie — ook wel bekend als black seed oil of Nigella Sativa — is een van de vijf hoofdingrediënten in onze Hair Food + Grow. Het is niet de bekendste olie in de haarverzorgingswereld, maar wel een van de oudste.
