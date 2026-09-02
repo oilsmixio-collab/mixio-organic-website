@@ -12,7 +12,7 @@
 <section class="section">
   <div class="container">
     <div class="legal-content">
-      {% if post.image %}<img src="{{ post.image }}" alt="{{ post.title }}" class="blog-hero-img">{% endif %}
+      {% if post.image %}<img src="{{ post.image }}" alt="{{ post.title }}" class="blog-hero-img" style="object-position:{{ post.image_position or 'center' }};">{% endif %}
       {{ post.html | safe }}
       <p style="margin-top:40px;"><a href="/blog" data-en="&larr; Back to the blog">&larr; Terug naar het blog</a></p>
     </div>

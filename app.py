@@ -111,6 +111,7 @@ def load_blog_posts():
             "date": meta.get("date", ""),
             "excerpt": meta.get("excerpt", ""),
             "image": meta.get("image", ""),
+            "image_position": meta.get("image_position", ""),
             "html": markdown.markdown(body),
         })
     posts.sort(key=lambda p: p["date"], reverse=True)

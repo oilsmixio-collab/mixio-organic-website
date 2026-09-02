@@ -2,7 +2,8 @@
 title: Waarom koudgeperste oliën beter zijn voor je haar
 date: 2026-08-10
 excerpt: Niet alle plantaardige olie is gelijk. Het verschil tussen koudgeperst en geraffineerd bepaalt hoeveel voedingsstoffen er uiteindelijk in de fles — en op je haar — terechtkomen.
-image: /assets/img/hair-food-oil.jpg
+image: /assets/img/blog-koudgeperst.jpg
+image_position: center 78%
 ---
 
 Als je het etiket van een haarolie leest, kom je vaak twee heel verschillende productiemethodes tegen: koudgeperst en geraffineerd. Het verschil klinkt technisch, maar het effect op je haar is goed te merken.
