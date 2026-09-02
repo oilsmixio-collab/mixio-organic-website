@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="/index.html" data-en="Home">Home</a><span>／</span><a href="/blog" data-en="Blog">Blog</a><span>／</span><span>{{ post.title }}</span></div>
+    <h1>{{ post.title }}</h1>
+    <p class="blog-meta" style="text-align:center;">{{ post.date }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="legal-content">
+      {% if post.image %}<img src="{{ post.image }}" alt="{{ post.title }}" class="blog-hero-img">{% endif %}
+      {{ post.html | safe }}
+      <p style="margin-top:40px;"><a href="/blog" data-en="&larr; Back to the blog">&larr; Terug naar het blog</a></p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

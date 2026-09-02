@@ -11,12 +11,14 @@ Site draait dan op http://localhost:5050
 """
 
 import os
+import re
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, abort, request, jsonify, render_template, send_from_directory
 from dotenv import load_dotenv
+import markdown
 import requests
 
 load_dotenv()
@@ -70,7 +72,76 @@ HTML_PAGES = {
     "privacybeleid.html", "voorwaarden.html",
 }
 
+BLOG_DIR = os.path.join(ROOT_DIR, "blog", "posts")
+
 app = Flask(__name__)
+
+
+# ---------- Blog (markdown-bestanden in blog/posts/, geen database nodig) ----------
+
+def _parse_frontmatter(raw_text):
+    """Simpel '---\\nkey: value\\n---\\nmarkdown' front-matter, geen YAML-dependency nodig."""
+    match = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)$", raw_text, re.DOTALL)
+    if not match:
+        return {}, raw_text
+    frontmatter_block, body = match.groups()
+    meta = {}
+    for line in frontmatter_block.splitlines():
+        if ":" not in line:
+            continue
+        key, _, value = line.partition(":")
+        meta[key.strip()] = value.strip()
+    return meta, body
+
+
+def load_blog_posts():
+    """Leest en parsed alle .md-bestanden in blog/posts/, nieuwste eerst."""
+    posts = []
+    if not os.path.isdir(BLOG_DIR):
+        return posts
+    for filename in os.listdir(BLOG_DIR):
+        if not filename.endswith(".md"):
+            continue
+        slug = filename[:-3]
+        with open(os.path.join(BLOG_DIR, filename), encoding="utf-8") as f:
+            meta, body = _parse_frontmatter(f.read())
+        posts.append({
+            "slug": slug,
+            "title": meta.get("title", slug),
+            "date": meta.get("date", ""),
+            "excerpt": meta.get("excerpt", ""),
+            "image": meta.get("image", ""),
+            "html": markdown.markdown(body),
+        })
+    posts.sort(key=lambda p: p["date"], reverse=True)
+    return posts
+
+
+@app.route("/blog")
+def blog_list():
+    return render_template(
+        "blog_list.html",
+        posts=load_blog_posts(),
+        title="Blog | Mixio Organic",
+        title_en="Blog | Mixio Organic",
+        description="Tips, ingrediënten-uitleg en verhalen van Mixio Organic over natuurlijke haarverzorging.",
+        desc_en="Tips, ingredient spotlights and stories from Mixio Organic about natural hair care.",
+    )
+
+
+@app.route("/blog/<slug>")
+def blog_post(slug):
+    post = next((p for p in load_blog_posts() if p["slug"] == slug), None)
+    if not post:
+        abort(404)
+    return render_template(
+        "blog_post.html",
+        post=post,
+        title=f"{post['title']} | Mixio Organic Blog",
+        title_en=f"{post['title']} | Mixio Organic Blog",
+        description=post["excerpt"],
+        desc_en=post["excerpt"],
+    )
 
 
 # ---------- Statische bestanden (expliciet gewhitelist, geen .env/app.py etc.) ----------

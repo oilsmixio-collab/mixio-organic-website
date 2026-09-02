@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="/index.html" data-en="Home">Home</a><span>／</span><span data-en="Blog">Blog</span></div>
+    <span class="eyebrow" style="justify-content:center;" data-en="From the Mixio journal">Uit het Mixio-journaal</span>
+    <h1 data-en="Hair care, ingredients &amp; rituals.">Haarverzorging, ingrediënten &amp; rituelen.</h1>
+    <p style="max-width:52ch;margin:0 auto;" data-en="Tips, ingredient spotlights and stories from Mixio Organic — everything to get more out of your hair care routine.">Tips, ingrediënten-uitleg en verhalen van Mixio Organic — alles om meer uit je haarverzorgingsroutine te halen.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="blog-grid">
+      {% for post in posts %}
+      <a href="/blog/{{ post.slug }}" class="blog-card reveal in" style="text-decoration:none;color:inherit;">
+        {% if post.image %}<img src="{{ post.image }}" alt="{{ post.title }}">{% endif %}
+        <div class="blog-card-body">
+          <span class="blog-card-date">{{ post.date }}</span>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.excerpt }}</p>
+          <span class="btn btn-outline" data-en="Read more">Lees verder</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

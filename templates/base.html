@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="nl" data-title-en="{{ title_en }}" data-desc-en="{{ desc_en }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon-180.png">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Mixio Organic",
+  "image": "https://www.mixioorganic.nl/assets/img/logo-horizontal.png",
+  "url": "https://www.mixioorganic.nl/",
+  "email": "oilsmixio@gmail.com",
+  "description": "Mixio Organic maakt 100% organische haar- en huidverzorging en biedt salonbehandelingen (Scalp Treatment, Head Spa, Natuurlijk Verven) in Amsterdam.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Bilderdijkstraat 88",
+    "postalCode": "1053 KX",
+    "addressLocality": "Amsterdam",
+    "addressCountry": "NL"
+  },
+  "sameAs": ["https://www.instagram.com/mixioorganic?igsi=bHpkOWozNjJlZ3Fl&utm_source=qr"],
+  "priceRange": "€€"
+}
+</script>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <nav class="nav container">
+    <a href="/index.html" class="logo"><img src="/assets/img/logo-horizontal.png" alt="Mixio Organic" class="logo-img"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/index.html" data-en="Home">Home</a></li>
+      <li><a href="/producten.html" data-en="Products">Producten</a></li>
+      <li><a href="/diensten.html" data-en="Services">Diensten</a></li>
+      <li><a href="/blog" class="active" data-en="Blog">Blog</a></li>
+      <li><a href="/contact.html" data-en="About &amp; Contact">Over ons &amp; Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <div class="lang-switch" role="group" aria-label="Taal / Language">
+        <button type="button" data-lang="nl">NL</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a href="/cart.html" class="cart-link" aria-label="Winkelwagen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m-10 0a2 2 0 104 0 2 2 0 00-4 0zm10 0a2 2 0 104 0 2 2 0 00-4 0z"/></svg>
+        <span class="cart-badge" id="cartBadge" hidden>0</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+{% block content %}{% endblock %}
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="/index.html" class="logo"><img src="/assets/img/logo-horizontal.png" alt="Mixio Organic" class="logo-img"></a>
+        <p style="margin-top:16px;" data-en="100% organic hair and skin care, handmade in Amsterdam.">100% organische haar- en huidverzorging, met de hand gemaakt in Amsterdam.</p>
+        <div class="social-row">
+          <a href="https://www.instagram.com/mixioorganic?igsi=bHpkOWozNjJlZ3Fl&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="mailto:oilsmixio@gmail.com" aria-label="E-mail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z" stroke-linejoin="round"/><path d="M4 6l8 7 8-7" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 data-en="Navigation">Navigatie</h4>
+        <ul>
+          <li><a href="/index.html" data-en="Home">Home</a></li>
+          <li><a href="/producten.html" data-en="Products">Producten</a></li>
+          <li><a href="/diensten.html" data-en="Services">Diensten</a></li>
+          <li><a href="/blog" data-en="Blog">Blog</a></li>
+          <li><a href="/contact.html" data-en="About us">Over ons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/producten.html">Hair Food + Grow</a></li>
+          <li><a href="/cart.html" data-en="Cart">Winkelwagen</a></li>
+          <li><a href="/producten.html#veelgesteld" data-en="FAQ">Veelgestelde vragen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li data-en="Amsterdam, Netherlands">Amsterdam, Nederland</li>
+          <li><a href="mailto:oilsmixio@gmail.com">oilsmixio@gmail.com</a></li>
+          <li>KvK: 82230676</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-en="&#169; &lt;span data-year&gt;2026&lt;/span&gt; Mixio Organic. All rights reserved.">© <span data-year>2026</span> Mixio Organic. Alle rechten voorbehouden.</span>
+      <ul>
+        <li><a href="/voorwaarden.html" data-en="Terms &amp; Conditions">Algemene voorwaarden</a></li>
+        <li><a href="/privacybeleid.html" data-en="Privacy Policy">Privacybeleid</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== CHAT WIDGET ===================== -->
+<div class="chat-widget" id="chatWidget">
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">M</div>
+        <div>
+          <strong>Mixio Organic</strong>
+          <span class="chat-status">Online</span>
+        </div>
+      </div>
+      <button class="chat-close" id="chatClose" aria-label="Sluiten">×</button>
+    </div>
+    <div class="chat-body" id="chatBody"></div>
+  </div>
+  <button class="chat-toggle" id="chatToggle" aria-label="Chat openen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+  </button>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
