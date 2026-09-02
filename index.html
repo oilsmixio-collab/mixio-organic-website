@@ -463,19 +463,58 @@
     </div>
   </section>
 
-  <!-- ===================== 8B. BLOG BANNER ===================== -->
+  <!-- ===================== 8B. BLOG BANNER (slideshow) ===================== -->
   <section class="section section-cream2" id="blog-banner">
-    <div class="container split reverse">
-      <div class="split-visual reveal">
-        <div class="img-placeholder is-photo">
-          <img src="assets/img/blog-blackseed.jpg" alt="Zwartzaadolie, een van de ingrediënten in de Hair Food + Grow">
+    <div class="container">
+      <div class="blog-slideshow reveal" id="blogSlideshow">
+
+        <div class="blog-slide split reverse is-active" data-slide>
+          <div class="split-visual">
+            <div class="img-placeholder is-photo blog-slide-img">
+              <img src="assets/img/blog-koudgeperst.jpg" alt="Koudgeperste olie en de hand die de fles vasthoudt">
+            </div>
+          </div>
+          <div class="split-text">
+            <span class="eyebrow" data-en="From the blog">Van het blog</span>
+            <h2 data-en="Why cold-pressed oils are better for your hair">Waarom koudgeperste oliën beter zijn voor je haar</h2>
+            <p data-en="Not all plant oil is equal. The difference between cold-pressed and refined determines how many nutrients actually end up in the bottle — and on your hair.">Niet alle plantaardige olie is gelijk. Het verschil tussen koudgeperst en geraffineerd bepaalt hoeveel voedingsstoffen er uiteindelijk in de fles — en op je haar — terechtkomen.</p>
+            <a href="blog/koudgeperste-olien" class="btn btn-outline" style="margin-top:8px;" data-en="Read the article">Lees het artikel</a>
+          </div>
         </div>
-      </div>
-      <div class="split-text reveal">
-        <span class="eyebrow" data-en="From the blog">Van het blog</span>
-        <h2 data-en="Hair care tips, ingredient stories &amp; rituals.">Haarverzorgingstips, ingrediënt-verhalen &amp; rituelen.</h2>
-        <p data-en="Curious what makes cold-pressed oils different, or how to use the Hair Food + Grow for the best result? We write about it on the blog.">Nieuwsgierig wat koudgeperste oliën anders maakt, of hoe je de Hair Food + Grow het beste gebruikt? We schrijven erover op het blog.</p>
-        <a href="blog" class="btn btn-outline" style="margin-top:8px;" data-en="Read the blog">Lees het blog</a>
+
+        <div class="blog-slide split reverse" data-slide>
+          <div class="split-visual">
+            <div class="img-placeholder is-photo blog-slide-img">
+              <img src="assets/img/hero-lifestyle.jpg" alt="Hair Food + Grow aanbrengen">
+            </div>
+          </div>
+          <div class="split-text">
+            <span class="eyebrow" data-en="From the blog">Van het blog</span>
+            <h2 data-en="How to use the Hair Food + Grow for the best result">Zo gebruik je de Hair Food + Grow voor het beste resultaat</h2>
+            <p data-en="A few drops, the right technique and a little patience — that's all you need. This routine gets the most out of every bottle.">Een paar druppels, de juiste techniek en wat geduld — meer heb je niet nodig. Deze routine haalt het meeste uit elke fles.</p>
+            <a href="blog/hoe-gebruik-je-hair-food-grow" class="btn btn-outline" style="margin-top:8px;" data-en="Read the article">Lees het artikel</a>
+          </div>
+        </div>
+
+        <div class="blog-slide split reverse" data-slide>
+          <div class="split-visual">
+            <div class="img-placeholder is-photo blog-slide-img">
+              <img src="assets/img/blog-blackseed.jpg" alt="Zwartzaadolie, een van de ingrediënten in de Hair Food + Grow">
+            </div>
+          </div>
+          <div class="split-text">
+            <span class="eyebrow" data-en="From the blog">Van het blog</span>
+            <h2 data-en="Ingredient spotlight — black seed oil">Ingrediënt uitgelicht — zwartzaadolie</h2>
+            <p data-en="Black seed oil (Nigella Sativa) has been used in traditional care for centuries. What makes this oil so beloved, and what does it actually do for your scalp?">Zwartzaadolie (Nigella Sativa) wordt al eeuwenlang gebruikt in traditionele verzorging. Wat maakt deze olie zo geliefd, en wat doet 'm precies voor je hoofdhuid?</p>
+            <a href="blog/ingredient-zwartzaadolie" class="btn btn-outline" style="margin-top:8px;" data-en="Read the article">Lees het artikel</a>
+          </div>
+        </div>
+
+        <div class="blog-slideshow-dots" id="blogSlideDots">
+          <button type="button" class="is-active" data-dot="0" aria-label="Slide 1"></button>
+          <button type="button" data-dot="1" aria-label="Slide 2"></button>
+          <button type="button" data-dot="2" aria-label="Slide 3"></button>
+        </div>
       </div>
     </div>
   </section>

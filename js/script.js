@@ -99,6 +99,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateCartBadge();
 
+  /* ---------- Blog-slideshow (homepage) ---------- */
+  const blogSlideshow = document.getElementById('blogSlideshow');
+  if (blogSlideshow) {
+    const slides = blogSlideshow.querySelectorAll('.blog-slide');
+    const dots = document.querySelectorAll('#blogSlideDots button');
+    let current = 0;
+    let slideTimer;
+
+    const showSlide = (index) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
+    };
+
+    const startAutoplay = () => {
+      clearInterval(slideTimer);
+      slideTimer = setInterval(() => showSlide(current + 1), 6000);
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        showSlide(i);
+        startAutoplay();
+      });
+    });
+
+    startAutoplay();
+  }
+
   /* ---------- Promo banner countdown (48u, gedeeld via localStorage) ---------- */
   const promoBanner = document.getElementById('promoBanner');
   if (promoBanner) {
